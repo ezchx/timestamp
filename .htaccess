@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(.*)$ index.html?timestamp=$1 [L,QSA]

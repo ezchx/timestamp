@@ -1,0 +1,66 @@
+<html>
+
+  <head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+
+    $(document).ready(function() {
+
+    var months = {
+      1: "January",
+      2: "February",
+      3: "March",
+      4: "April",
+      5: "May",
+      6: "June",
+      7: "July",
+      8: "August",
+      9: "September",
+      10: "October",
+      11: "November",
+      12: "December"
+    }
+  
+    var timeStamp = "";
+    var unixTimeStamp = null;
+    var naturalTimeStamp = null;
+  
+    function ntsConverter(unixTimeStamp) {
+      var date = new Date(unixTimeStamp*1000);
+      var month = date.getMonth() + 1;
+      var day = date.getDate();
+      var year = date.getFullYear();
+      var naturalTimeStamp = months[month] + " " + day + ", " + year;
+      return naturalTimeStamp;
+    }
+
+
+    // retreive timestamp
+    timeStamp = window.location.pathname;
+    timeStamp = timeStamp.replace(/\/timestamp\//g, "");
+    timeStamp = timeStamp.replace(/%20/g, " ");
+
+    // verify timestamp and type
+    if (new Date(timeStamp * 1000) > 0) {
+      var unixTimeStamp = Number(timeStamp);
+      var naturalTimeStamp = ntsConverter(unixTimeStamp);
+    } else if (Date.parse(timeStamp) > 0) {
+      var unixTimeStamp = Date.parse(timeStamp) / 1000;
+      var naturalTimeStamp = ntsConverter(unixTimeStamp);
+    }
+  
+    var rtnArray = { "unix": unixTimeStamp, "natural": naturalTimeStamp };
+
+    document.write(JSON.stringify(rtnArray));
+
+    });
+
+    </script>
+
+  </head>
+
+  <body></body>
+
+</html>
