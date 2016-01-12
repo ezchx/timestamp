@@ -7,4 +7,3 @@ The htacess file converts the parameter at the end of the url to the timestamp p
 The live version can be found at https://www.ezchx.com/timestamp/
 Place your timestamp at the end of the url.
 
-Be free my code!
